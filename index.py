@@ -66,8 +66,8 @@ class index:
     def build_idf_dict(self):
         num_of_documents = len(self.docIdDictionary)
         for token, posting_list in self.inverted_index.items():
-            #print("num_of_documents:", num_of_documents, "| token:", token, "| num_of_docs:", float(len(posting_list.keys())))
-            self.idf_dict[token] = math.log(num_of_documents / float(len(posting_list.keys())))
+            #print(" token:", token, "| num_of_docs:", list(posting_list.keys()))
+            self.idf_dict[token] = 1 + (math.log(num_of_documents / float(len(list(posting_list.keys())))))
     
     #    Term ID: [〖idf〗_t,(ID1,w_(t_1,d_1 ), [pos1,pos2,..]), (ID2, w_(t_2,d_2 ), [pos1,pos2,…]),….]
     #   { term : [ idf, (docId1, tf, [pos1,pos2]), (docId2, tf, [pos1,pos2]) ]
@@ -112,13 +112,6 @@ class index:
         tup.reverse()
         return tup
     
-                
-    # def vectorize_words(self, words):
-    #     count_vectorize = CountVectorizer(analyzer='word')
-    #     vectorized = count_vectorize.fit_transform(words)
-    #     # print("query:", words)
-    #     # print("vectorized",vectorized)
-    #     return vectorized.toarray()
         
     def build_tf_dict(self, text_array):
         word_count = {}
@@ -155,21 +148,27 @@ class index:
         for docId in self.docIdDictionary.values():
             l = 0
             for term in vocab:
-                l += math.pow(self.get_tf_for_term(term, docId), 2)
+                #print("self.get_tf_for_term(term, docId)", self.get_tf_for_term(term, docId))
+                tf =self.get_tf_for_term(term, docId)
+                if tf > 0:
+                    #print("TF for term", term, "in docid", docId, " is", tf)
+                    l += math.pow(1+math.log(tf), 2)
             self.normalized_tf_lengths[docId] = math.sqrt(l)
 
 
     def calc_cosine_similarity(self, query, docId):
+        if self.normalized_tf_lengths[docId] == 0:
+            #print("normalized tf zero for doc ", self.get_file_name_from_docIdDict(docId))
+            return 0
         sim_score = 0
         vocab = list(self.tfidf_weighted_dictionary.keys())
         for term in query:
             term = term.lower()
             if term in vocab:
                 sim_score += (self.get_tf_for_term(term, docId) * self.get_idf_for_term(term))
-        if self.normalized_tf_lengths[docId] == 0:
-            #print("NORMALIZED TF LENGTHS IS ZERO FOR docID", docId)
-            return sim_score
         sim_score = sim_score / self.normalized_tf_lengths[docId]
+        #if sim_score > 1:
+        #    print("Sim score", sim_score, "normalized", self.normalized_tf_lengths[docId])
         return sim_score
 
     def get_cosine(self, vec1, vec2):
@@ -190,46 +189,13 @@ class index:
         words = WORD.findall(text)
         return Counter(words)
     
-    # function for identifying relevant docs using the index
-    def and_query(self, query_terms):
-        start_time = time.time()
-        if len(query_terms) == 0:
-            print("Enter at least one search query!")
-            return
-        if len(query_terms) == 1:
-            return self.getPostingListForTerm(query_terms[0])
-        
-        #more than one search term entered, do AND by intersection
-        result = self.getPostingListForTerm(query_terms[0])
-        for term in query_terms[1:]:
-            result = self.intersect(result, self.getPostingListForTerm(term))
-        self.post_process_results(result, query_terms, False)
-
-        print("Retrieved in " + str(time.time() - start_time) + " seconds")
-
-        return result
-    
-    def intersect(self, p1, p2):
-        result = []
-        i = 0
-        j = 0
-        while i < len(p1) and j < len(p2):
-            if p1[i] == p2[j]:
-                result.append(p1[i])
-                i = i + 1
-                j = j + 1
-            elif p1[i] < p2[j]:
-                i = i + 1
-            else:
-                j = j + 1
-        return result
-
+   
     def post_process_exact_inexact_results(self, result, terms, K):
         print("Searching for '",self.join_txt_array_to_string(terms),"'...")
         if len(result) == 0:
             print('No results found!')
             return
-        print('Total docs retrieved: ' + str(len(result)))
+        print('Total docs searched: ' + str(len(result)))
         if len(result) > K:
             print("Taking top", K, "results")
             result = result[:K]
@@ -241,27 +207,9 @@ class index:
             fileName = fileNames[docIds.index(docId)]
             print("File:",fileName, "Score:", score)
         
-# function to process result from AND operation. we get bunch of docIds.
-    def post_process_results(self, result, terms, print_positions):
-        if len(result) == 0:
-            print('No results found!')
-            return
-        print('Total docs retrieved: ' + str(len(result)))
-        fileNames = list(self.docIdDictionary.keys())
-        docIds = list(self.docIdDictionary.values())
-        for docId in result:
-            fileName = fileNames[docIds.index(docId)]
-            print(fileName)
-            if print_positions == True:
-                for term in terms:
-                    docIdsAndPositions = self.inverted_index[term]
-                    for docIdPosDict in docIdsAndPositions:
-                        docIdInKey = list(docIdPosDict.keys())[0]
-                        if docIdInKey == docId:
-                            positions = docIdPosDict[docIdInKey]
-                            print('Term: "'+term+'" found in file "'+fileName+'" at positions: '+str(positions))
-                            
+
     def exact_query(self, query, K):
+        start_time = time.time()
         results = []
         query = self.filter_words_with_stoplist(query) #input text sentence, outputs array
         for fileName, docId in self.docIdDictionary.items():
@@ -270,10 +218,12 @@ class index:
             results.append((score, docId))
             # sort according to score then pick top K
         results = self.sort_cosine_leaders(results)
+        print("exact_query searched in " + str(time.time() - start_time) + " seconds")
         self.post_process_exact_inexact_results(results, query, K)
 
     def inexact_query_champion(self, query, K):
         query_terms = self.filter_words_with_stoplist(query) #input text sentence, outputs array
+        start_time = time.time()
         results = []
         unique_docIds = set()
         #print("self.champion_list", self.champion_list);
@@ -287,10 +237,12 @@ class index:
             score = self.calc_cosine_similarity(query_terms, docId)
             results.append((score, docId))
         results = self.sort_cosine_leaders(results)
+        print("inexact_query_champion searched in " + str(time.time() - start_time) + " seconds")
         self.post_process_exact_inexact_results(results, query_terms, K)
     
     def inexact_query_index_elimination(self, query, k):
         query_terms = self.filter_words_with_stoplist(query) #input text sentence, outputs array
+        start_time = time.time()
         term_idf_tuples = []
         for term in query_terms:
             term = term.lower()
@@ -300,10 +252,12 @@ class index:
         num_to_pic = len(term_idf_tuples) // 2
         top_query_terms = term_idf_tuples[:num_to_pic]
         only_query_terms = list(map(lambda x: x[1], top_query_terms))
+        print("inexact_query_index_elimination searched in " + str(time.time() - start_time) + " seconds")
         return self.exact_query(self.join_txt_array_to_string(only_query_terms), k)
         
     def inexact_query_cluster_pruning(self, query, K):
         query_terms = self.filter_words_with_stoplist(query) #input text sentence, outputs array
+        start_time = time.time()
         leader_cosine_queries = []
         single_str = self.join_txt_array_to_string(query_terms)
         single_str = single_str.lower()
@@ -337,6 +291,7 @@ class index:
             else:
                 break
         results = self.sort_cosine_leaders(results)
+        print("inexact_query_cluster_pruning searched in " + str(time.time() - start_time) + " seconds")
         self.post_process_exact_inexact_results(results, query_terms, K)
         
             
@@ -446,9 +401,17 @@ q1 = "with without yemen"
 q2 = "french nuclear weapons president kennedy KHRUSHCHEV KAZAKHSTAN"
 q3 = "greatest country asian"
 q4 = "thousands more citizens"
-#a.inexact_query_cluster_pruning(q4, 5)
-a.exact_query(q4, 5)
-
+q5 = "americans europe"
+queries = [q1, q2, q3, q4, q5]
+for q in queries:
+    a.exact_query(q, 5)
+    print("------------------------------------------------------------------------------------------------------------")
+    a.inexact_query_champion(q, 5)
+    print("------------------------------------------------------------------------------------------------------------")
+    a.inexact_query_index_elimination(q, 5)
+    print("------------------------------------------------------------------------------------------------------------")
+    a.inexact_query_cluster_pruning(q, 5)
+    print("============================================================================================================")
 #a.and_query(query1)
 """
 print("------------------------------------------------------------------------------------------------------------")
