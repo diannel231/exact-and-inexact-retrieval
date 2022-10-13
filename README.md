@@ -8,27 +8,6 @@
 ## buildDocIdList()
 Returns the Id dictionary
 
-## buildIndex()
-The primary function for constructing the inverted index using the list of documents. It first tokenizes the documents then converts to the inverted index form.
-
-## build_idf_dict()
-Creates the term frequenxy-inverse document frequency list
-
-## build_upgraded_inverted_index_to_contain_tfidf()
-Uses both the invesrted index list and tfidf list to creade a weighted inverted index that contains the tfidf information for the champions lst.
-
-## sort_docId_weighted_posIndex_tuples()
-Takes in a list of tuples as a query and returns a list of the most relevant tuples in the list for inexact search methods
-
-## build_tf_dict()
-Takes in a list of words in a document as a query and returns a list with information on how frequent each term in the list is compared to every other term as a percentage
-
-## term_frequency_normalization_for_docIds(self)
-Normalizes the documents term frequency by taking the square root of the frequencies log + 1 squared
-
-## calc_cosine_similarity()
-returns the cosine similarty by comparing the term frequency lists to see how much terms have similar frequency within their respective documents
-
 ## exact_query()
 Takes the exact query, sorts the resulting list based on relevance and takes input on how many results are wanted and post processes the results
 
@@ -40,6 +19,12 @@ Does an inexact query by taking the most relevant k queries according to the wei
 
 ## inexact_query_cluster_pruning(self, query, K)
 Uses cosine simlarity, a leader and follower status is assigned to each document and then, rather than search every document while querying, the leader is queried and if the results do not appear to be very relevant then the followers of the branch are also ignored
+
+### print_dict()
+prints the terms and posting list in the index
+
+### print_doc_list()
+prints the documents and their document id
 
 ## build_leaders_and_followers()
 Randomly assigns a number of documents as leaders according to the square root of the total number of documents. The document list is then processed , ignoring the leader documents, to calculate the similarity between remaining documents and assign each document as a follower to the most relevant leader.
@@ -64,14 +49,37 @@ Returns the term frequency for a specific term in a specific document
 ### get_idf_for_term()
 Gets the term idf for cosing scoring
 
-### print_dict()
-prints the terms and posting list in the index
 
-### print_doc_list()
-prints the documents and their document id
 
 ### get_file_name_from_docIdDict()
 gets the file name from the document Id dictionary
+
+
+
+## buildIndex()
+The primary function for constructing the inverted index using the list of documents. It first tokenizes the documents then converts to the inverted index form.
+
+## build_idf_dict()
+Creates the term frequenxy-inverse document frequency list
+
+## build_upgraded_inverted_index_to_contain_tfidf()
+Uses both the invesrted index list and tfidf list to creade a weighted inverted index that contains the tfidf information for the champions lst.
+
+## sort_docId_weighted_posIndex_tuples()
+Takes in a list of tuples as a query and returns a list of the most relevant tuples in the list for inexact search methods
+
+## build_tf_dict()
+Takes in a list of words in a document as a query and returns a list with information on how frequent each term in the list is compared to every other term as a percentage
+
+## term_frequency_normalization_for_docIds(self)
+Normalizes the documents term frequency by taking the square root of the frequencies log + 1 squared
+
+## calc_cosine_similarity()
+returns the cosine similarty by comparing the term frequency lists to see how much terms have similar frequency within their respective documents
+
+
+## buildDocIdList()
+Returns the Id dictionary
 
 ### get_file_text()
 returns the text of a document by inputting a file name
