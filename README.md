@@ -1,5 +1,12 @@
 # exact-and-inexact-retrieval
 
+##How to execute code
+Download anaconda
+run conda install -c anaconda spyder 
+open spyder
+Copy the index.py, stoplist.txt, and collections files into spyder
+Hit the run button in Spyder
+
 ## buildDocIdList()
 Returns the Id dictionary
 
