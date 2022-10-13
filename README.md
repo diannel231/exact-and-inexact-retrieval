@@ -29,10 +29,10 @@ prints the documents and their document id
 ### build_leaders_and_followers()
 Randomly assigns a number of documents as leaders according to the square root of the total number of documents. The document list is then processed , ignoring the leader documents, to calculate the similarity between remaining documents and assign each document as a follower to the most relevant leader.
 
-### get_cosine(self, vec1, vec2)
+### get_cosine()
 Calculates the cosine of two documents for later use in the inexact retrieval methods
 
-### text_to_vector(self, text)
+### text_to_vector()
 returns the list of words as a vector
 
 ### post_process_exact_inexact_results()
@@ -67,7 +67,7 @@ Takes in a list of tuples as a query and returns a list of the most relevant tup
 ### build_tf_dict()
 Takes in a list of words in a document as a query and returns a list with information on how frequent each term in the list is compared to every other term as a percentage
 
-### term_frequency_normalization_for_docIds(self)
+### term_frequency_normalization_for_docIds()
 Normalizes the documents term frequency by taking the square root of the frequencies log + 1 squared
 
 ### calc_cosine_similarity()
@@ -88,5 +88,5 @@ filters the most common words out of the text so that the effect of the low impa
 ### filter_query_text_return_text()
 filters the most common words out of the query so that the effect of the low impact words are lower
 
-### getPostingListForTerm(self, term)
+### getPostingListForTerm()
 returns the list of document ids without positions
