@@ -1,3 +1,4 @@
+C:\Users\Temp\anaconda3\python.exe C:\Users\Temp\Documents\GitHub\exact-and-inexact-retrieval\index.py 
 Index built in 2.1512579917907715 seconds
 Vocabulary Size: 22469
 exact_query searched in 0.06805849075317383 seconds
@@ -189,3 +190,5 @@ File: Text-54.txt Score: 0.0007702279157424648
 File: Text-47.txt Score: 0.0002597764987793163
 File: Text-211.txt Score: 5.002428759610919e-05
 ============================================================================================================
+
+Process finished with exit code 0

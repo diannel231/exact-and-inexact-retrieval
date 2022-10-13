@@ -62,9 +62,11 @@ class index:
         self.build_idf_dict()
         self.build_upgraded_inverted_index_to_contain_tfidf()
         print("Index built in " + str(time.time() - start_time) + " seconds")
+        self.term_frequency_normalization_for_docIds()
 
-        # Select leaders for cluster pruning method
+        # build leaders and followers for cluster pruning
         self.build_leaders_and_followers()
+
 
     def build_idf_dict(self):
         num_of_documents = len(self.docIdDictionary)
@@ -78,8 +80,7 @@ class index:
         tfidf_dict = {}
         for token, posting_list in self.inverted_index.items():
             tfidf_dict[token] = [self.idf_dict[token]]
-            # keys are document ids, values are positional indexes array
-            for docId in posting_list.keys():
+            for docId in posting_list.keys():  # keys are document ids, values are positional indexes array
                 tf = self.tf_dict[docId][token]
                 if tf > 0:
                     weighted_tf = 1 + math.log(tf)
@@ -92,9 +93,11 @@ class index:
             if len(sorted_list) <= 3:
                 r = len(sorted_list)
             else:
-                # half the sorted list for champions
-                r = len(sorted_list) // 2
+                r = len(sorted_list) // 2  # half the sorted list for champions
+            # print("sorted_list", sorted_list, "R", r)
+            # print("sorted_list.reverse()", sorted_list.reverse())
             self.champion_list[token] = sorted_list[:r]
+            # PUT THIS SORTED LIST BACK WJERE IT BELONGS!
             tfidf_dict[token] = [self.idf_dict[token]]
             for t in sorted_list:
                 tfidf_dict[token].append(t)
@@ -147,10 +150,8 @@ class index:
         for docId in self.docIdDictionary.values():
             l = 0
             for term in vocab:
-                # print("self.get_tf_for_term(term, docId)", self.get_tf_for_term(term, docId))
                 tf = self.get_tf_for_term(term, docId)
                 if tf > 0:
-                    # print("TF for term", term, "in docid", docId, " is", tf)
                     l += math.pow(1 + math.log(tf), 2)
             self.normalized_tf_lengths[docId] = math.sqrt(l)
 
@@ -206,8 +207,7 @@ class index:
     def exact_query(self, query, K):
         start_time = time.time()
         results = []
-        # input text sentence, outputs array
-        query = self.filter_words_with_stoplist(query)
+        query = self.filter_words_with_stoplist(query)  # input text sentence, outputs array
         for fileName, docId in self.docIdDictionary.items():
             score = self.calc_cosine_similarity(query, docId)
             # print("score", score, "query", query, "docId", docId)
@@ -218,8 +218,7 @@ class index:
         self.post_process_exact_inexact_results(results, query, K)
 
     def inexact_query_champion(self, query, K):
-        # input text sentence, outputs array
-        query_terms = self.filter_words_with_stoplist(query)
+        query_terms = self.filter_words_with_stoplist(query)  # input text sentence, outputs array
         start_time = time.time()
         results = []
         unique_docIds = set()
@@ -238,8 +237,7 @@ class index:
         self.post_process_exact_inexact_results(results, query_terms, K)
 
     def inexact_query_index_elimination(self, query, k):
-        # input text sentence, outputs array
-        query_terms = self.filter_words_with_stoplist(query)
+        query_terms = self.filter_words_with_stoplist(query)  # input text sentence, outputs array
         start_time = time.time()
         term_idf_tuples = []
         for term in query_terms:
@@ -254,8 +252,7 @@ class index:
         return self.exact_query(self.join_txt_array_to_string(only_query_terms), k)
 
     def inexact_query_cluster_pruning(self, query, K):
-        # input text sentence, outputs array
-        query_terms = self.filter_words_with_stoplist(query)
+        query_terms = self.filter_words_with_stoplist(query)  # input text sentence, outputs array
         start_time = time.time()
         leader_cosine_queries = []
         single_str = self.join_txt_array_to_string(query_terms)
@@ -263,6 +260,8 @@ class index:
         for leader, followers in self.group.items():
             if leader is None:
                 continue
+            # print("leader!!!", leader)
+            # print("docIdDictionary!!!", self.docIdDictionary)
             leader_txt = self.get_file_text(self.get_file_name_from_docIdDict(leader))
             leader_txt_filtered_array = self.filter_words_with_stoplist(leader_txt)
             leader_txt = self.join_txt_array_to_string(leader_txt_filtered_array)
@@ -281,6 +280,7 @@ class index:
                 score = self.calc_cosine_similarity(query_terms, docId)
                 if score <= 0:
                     continue
+                # print("score", score, "query", query, "docId", docId)
                 results.append((score, docId))
             if len(results) < K:
                 continue
