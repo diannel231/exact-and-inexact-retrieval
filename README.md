@@ -17,7 +17,7 @@ Takes the top single query word documents for each query term and only does the 
 ## inexact_query_index_elimination()
 Does an inexact query by taking the most relevant k queries according to the weighted tf-idf dictionary and processes those results
 
-## inexact_query_cluster_pruning(self, query, K)
+## inexact_query_cluster_pruning()
 Uses cosine simlarity, a leader and follower status is assigned to each document and then, rather than search every document while querying, the leader is queried and if the results do not appear to be very relevant then the followers of the branch are also ignored
 
 ## print_dict()
