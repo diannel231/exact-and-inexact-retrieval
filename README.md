@@ -5,8 +5,8 @@
   - Copy the index.py, stoplist.txt, and collections files
   - run "python index.py"
 
-## buildDocIdList()
-Returns the Id dictionary
+## buildIndex()
+The primary function for constructing the inverted index using the list of documents. It first tokenizes the documents then converts to the inverted index form.
 
 ## exact_query()
 Takes the exact query, sorts the resulting list based on relevance and takes input on how many results are wanted and post processes the results
@@ -43,6 +43,9 @@ Takes in a list of tuples as a query and returns the list of tuples relevant to 
 
 ### sort_cosine_leaders()
 
+## buildDocIdList()
+Returns the Id dictionary
+
 ### get_tf_for_term()
 Returns the term frequency for a specific term in a specific document
 
@@ -51,9 +54,6 @@ Gets the term idf for cosing scoring
 
 ### get_file_name_from_docIdDict()
 gets the file name from the document Id dictionary
-
-### buildIndex()
-The primary function for constructing the inverted index using the list of documents. It first tokenizes the documents then converts to the inverted index form.
 
 ### build_idf_dict()
 Creates the term frequenxy-inverse document frequency list
