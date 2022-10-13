@@ -18,12 +18,6 @@ Takes in a list of tuples as a query and returns a list of the most relevant tup
 ## build_tf_dict()
 Takes in a list of words in a document as a query and returns a list with information on how frequent each term in the list is compared to every other term as a percentage
 
-## get_tf_for_term()
-Returns the term frequency for a specific term in a specific document
-
-## get_idf_for_term()
-Gets the term idf for cosing scoring
-
 ## term_frequency_normalization_for_docIds(self)
 Normalizes the documents term frequency by taking the square root of the frequencies log + 1 squared
 
@@ -58,6 +52,12 @@ Does the post processing of the results from each search to display relevant inf
 Takes in a list of tuples as a query and returns the list of tuples relevant to the inverted document frequency
 
 ### sort_cosine_leaders()
+
+### get_tf_for_term()
+Returns the term frequency for a specific term in a specific document
+
+### get_idf_for_term()
+Gets the term idf for cosing scoring
 
 ### print_dict()
 prints the terms and posting list in the index
