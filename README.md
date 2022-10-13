@@ -80,8 +80,10 @@ returns the text of a document by inputting a file name
 returns text with an inputted array appended to the end
 
 ### filter_words_with_stoplist()
+filters the most common words out of the text so that the effect of the low impact words are lower
 
 ### filter_query_text_return_text()
+filters the most common words out of the query so that the effect of the low impact words are lower
 
 ### getPostingListForTerm(self, term)
 returns the list of document ids without positions
