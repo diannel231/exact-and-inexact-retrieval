@@ -31,15 +31,10 @@ Normalizes the documents term frequency by taking the square root of the frequen
 returns the cosine similarty by comparing the term frequency lists to see how much terms have similar frequency within their respective documents
 
 ## exact_query()
-Takes the exact qeury, sorts the resulting list based on relevance and takes input on how many results are wanted and post processes the results
+Takes the exact query, sorts the resulting list based on relevance and takes input on how many results are wanted and post processes the results
 
 ## inexact_query_champion()
-
-
-
-
-
-
+Takes the top single query word documents for each query term and only does the cosine similarity to calculate the score for those top documents
 
 ## inexact_query_index_elimination()
 Does an inexact query by taking the most relevant k queries according to the weighted tf-idf dictionary and processes those results
