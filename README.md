@@ -43,7 +43,7 @@ Takes in a list of tuples as a query and returns the list of tuples relevant to 
 
 ### sort_cosine_leaders()
 
-## buildDocIdList()
+### buildDocIdList()
 Returns the Id dictionary
 
 ### get_tf_for_term()
