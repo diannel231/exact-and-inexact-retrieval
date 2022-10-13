@@ -30,15 +30,6 @@ Normalizes the documents term frequency by taking the square root of the frequen
 ## calc_cosine_similarity()
 returns the cosine similarty by comparing the term frequency lists to see how much terms have similar frequency within their respective documents
 
-## get_cosine(self, vec1, vec2)
-Calculates the cosine of two documents for later use in the inexact retrieval methods
-
-## text_to_vector(self, text)
-returns the list of words as a vector
-
-## post_process_exact_inexact_results()
-Does the post processing of the results from each search to display relevant information like the number of documents searched and the search results
-
 ## exact_query()
 Takes the exact qeury, sorts the resulting list based on relevance and takes input on how many results are wanted and post processes the results
 
@@ -59,29 +50,38 @@ Uses cosine simlarity, a leader and follower status is assigned to each document
 ## build_leaders_and_followers()
 Randomly assigns a number of documents as leaders according to the square root of the total number of documents. The document list is then processed , ignoring the leader documents, to calculate the similarity between remaining documents and assign each document as a follower to the most relevant leader.
 
-## sort_term_idf_tuples()
+### get_cosine(self, vec1, vec2)
+Calculates the cosine of two documents for later use in the inexact retrieval methods
+
+### text_to_vector(self, text)
+returns the list of words as a vector
+
+### post_process_exact_inexact_results()
+Does the post processing of the results from each search to display relevant information like the number of documents searched and the search results
+
+### sort_term_idf_tuples()
 Takes in a list of tuples as a query and returns the list of tuples relevant to the inverted document frequency
 
-## sort_cosine_leaders()
+### sort_cosine_leaders()
 
-## print_dict()
+### print_dict()
 prints the terms and posting list in the index
 
-## print_doc_list()
+### print_doc_list()
 prints the documents and their document id
 
-## get_file_name_from_docIdDict()
+### get_file_name_from_docIdDict()
 gets the file name from the document Id dictionary
 
-## get_file_text()
+### get_file_text()
 returns the text of a document by inputting a file name
 
-## join_txt_array_to_string()
+### join_txt_array_to_string()
 returns text with an inputted array appended to the end
 
-## filter_words_with_stoplist()
+### filter_words_with_stoplist()
 
-## filter_query_text_return_text()
+### filter_query_text_return_text()
 
-## getPostingListForTerm(self, term)
+### getPostingListForTerm(self, term)
 returns the list of document ids without positions
