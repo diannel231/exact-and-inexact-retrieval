@@ -2,7 +2,7 @@
 
 ## How to execute code
   - Install python
-  - Copy the index.py, stoplist.txt, and collections files into spyder
+  - Copy the index.py, stoplist.txt, and collections files
   - run "python index.py"
 
 ## buildDocIdList()
