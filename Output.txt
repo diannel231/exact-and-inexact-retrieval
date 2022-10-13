@@ -1,0 +1,191 @@
+Index built in 2.1512579917907715 seconds
+Vocabulary Size: 22469
+exact_query searched in 0.06805849075317383 seconds
+Searching for ' without yemen '...
+Total docs searched: 423
+Taking top 5 results
+File: Text-36.txt Score: 0.0031583666473288577
+File: Text-10.txt Score: 0.002501016591347496
+File: Text-267.txt Score: 0.002336951774711781
+File: Text-195.txt Score: 0.00228631388669546
+File: Text-344.txt Score: 0.002109562764580226
+------------------------------------------------------------------------------------------------------------
+inexact_query_champion searched in 0.007506370544433594 seconds
+Searching for ' without yemen '...
+Total docs searched: 51
+Taking top 5 results
+File: Text-267.txt Score: 0.002336951774711781
+File: Text-344.txt Score: 0.002109562764580226
+File: Text-99.txt Score: 0.0006965259737673695
+File: Text-159.txt Score: 7.328945706419388e-05
+File: Text-327.txt Score: 0.0
+------------------------------------------------------------------------------------------------------------
+inexact_query_index_elimination searched in 0.0 seconds
+exact_query searched in 0.06355428695678711 seconds
+Searching for ' yemen '...
+Total docs searched: 423
+Taking top 5 results
+File: Text-36.txt Score: 0.0031583666473288577
+File: Text-10.txt Score: 0.002501016591347496
+File: Text-267.txt Score: 0.002336951774711781
+File: Text-195.txt Score: 0.00228631388669546
+File: Text-344.txt Score: 0.002109562764580226
+------------------------------------------------------------------------------------------------------------
+inexact_query_cluster_pruning searched in 0.014011383056640625 seconds
+Searching for ' without yemen '...
+No results found!
+============================================================================================================
+exact_query searched in 0.09808468818664551 seconds
+Searching for ' french nuclear weapons president kennedy khrushchev kazakhstan '...
+Total docs searched: 423
+Taking top 5 results
+File: Text-2.txt Score: 0.005418547168787975
+File: Text-276.txt Score: 0.0037142801434164496
+File: Text-15.txt Score: 0.0033831263296918808
+File: Text-200.txt Score: 0.003274452845389635
+File: Text-82.txt Score: 0.002985859228478672
+------------------------------------------------------------------------------------------------------------
+inexact_query_champion searched in 0.03352832794189453 seconds
+Searching for ' french nuclear weapons president kennedy khrushchev kazakhstan '...
+Total docs searched: 151
+Taking top 5 results
+File: Text-276.txt Score: 0.0037142801434164496
+File: Text-15.txt Score: 0.0033831263296918808
+File: Text-200.txt Score: 0.003274452845389635
+File: Text-82.txt Score: 0.002985859228478672
+File: Text-21.txt Score: 0.002233914368259681
+------------------------------------------------------------------------------------------------------------
+inexact_query_index_elimination searched in 0.0 seconds
+exact_query searched in 0.06655740737915039 seconds
+Searching for ' weapons president nuclear '...
+Total docs searched: 423
+Taking top 5 results
+File: Text-200.txt Score: 0.003274452845389635
+File: Text-363.txt Score: 0.002218697248102648
+File: Text-135.txt Score: 0.0018479611715972958
+File: Text-174.txt Score: 0.0011346109141079526
+File: Text-1.txt Score: 0.0011225082395152346
+------------------------------------------------------------------------------------------------------------
+inexact_query_cluster_pruning searched in 0.013511180877685547 seconds
+Searching for ' french nuclear weapons president kennedy khrushchev kazakhstan '...
+Total docs searched: 5
+File: Text-186.txt Score: 0.0009694191425311803
+File: Text-402.txt Score: 0.0007548804730800277
+File: Text-203.txt Score: 0.0006746729395162604
+File: Text-47.txt Score: 0.00023962794168328673
+File: Text-170.txt Score: 0.0001581858390116275
+============================================================================================================
+exact_query searched in 0.07506561279296875 seconds
+Searching for ' greatest country asian '...
+Total docs searched: 423
+Taking top 5 results
+File: Text-107.txt Score: 0.0013773287276294976
+File: Text-60.txt Score: 0.0009743337738274133
+File: Text-132.txt Score: 0.0007574735688310612
+File: Text-414.txt Score: 0.0007280933767554201
+File: Text-162.txt Score: 0.0004541282779106977
+------------------------------------------------------------------------------------------------------------
+inexact_query_champion searched in 0.01201009750366211 seconds
+Searching for ' greatest country asian '...
+Total docs searched: 72
+Taking top 5 results
+File: Text-343.txt Score: 2.6486793970464553e-05
+File: Text-328.txt Score: 0.0
+File: Text-327.txt Score: 0.0
+File: Text-59.txt Score: 0.0
+File: Text-323.txt Score: 0.0
+------------------------------------------------------------------------------------------------------------
+inexact_query_index_elimination searched in 0.0 seconds
+exact_query searched in 0.06705713272094727 seconds
+Searching for ' greatest '...
+Total docs searched: 423
+Taking top 5 results
+File: Text-99.txt Score: 0.0
+File: Text-98.txt Score: 0.0
+File: Text-97.txt Score: 0.0
+File: Text-96.txt Score: 0.0
+File: Text-95.txt Score: 0.0
+------------------------------------------------------------------------------------------------------------
+inexact_query_cluster_pruning searched in 0.01451253890991211 seconds
+Searching for ' greatest country asian '...
+No results found!
+============================================================================================================
+exact_query searched in 0.08907628059387207 seconds
+Searching for ' thousands more citizens '...
+Total docs searched: 423
+Taking top 5 results
+File: Text-10.txt Score: 0.0008589440538687598
+File: Text-81.txt Score: 0.0007550264966831718
+File: Text-218.txt Score: 0.0007375985570863548
+File: Text-265.txt Score: 0.0006802512679802364
+File: Text-136.txt Score: 0.0006496399523412355
+------------------------------------------------------------------------------------------------------------
+inexact_query_champion searched in 0.026522159576416016 seconds
+Searching for ' thousands more citizens '...
+Total docs searched: 148
+Taking top 5 results
+File: Text-10.txt Score: 0.0008589440538687598
+File: Text-81.txt Score: 0.0007550264966831718
+File: Text-218.txt Score: 0.0007375985570863548
+File: Text-265.txt Score: 0.0006802512679802364
+File: Text-136.txt Score: 0.0006496399523412355
+------------------------------------------------------------------------------------------------------------
+inexact_query_index_elimination searched in 0.0 seconds
+exact_query searched in 0.07206177711486816 seconds
+Searching for ' thousands '...
+Total docs searched: 423
+Taking top 5 results
+File: Text-266.txt Score: 0.0003776245824577257
+File: Text-331.txt Score: 0.0002579280715752629
+File: Text-343.txt Score: 1.6702281082539406e-05
+File: Text-99.txt Score: 0.0
+File: Text-98.txt Score: 0.0
+------------------------------------------------------------------------------------------------------------
+inexact_query_cluster_pruning searched in 0.011510372161865234 seconds
+Searching for ' thousands more citizens '...
+Total docs searched: 5
+File: Text-297.txt Score: 0.0002443086655854656
+File: Text-134.txt Score: 0.0002428221658597968
+File: Text-186.txt Score: 0.0002295246652142694
+File: Text-402.txt Score: 0.00013599767109989924
+File: Text-211.txt Score: 0.00012112785704468156
+============================================================================================================
+exact_query searched in 0.08056855201721191 seconds
+Searching for ' americans europe '...
+Total docs searched: 423
+Taking top 5 results
+File: Text-174.txt Score: 0.004033061700955305
+File: Text-202.txt Score: 0.0015088283625321788
+File: Text-48.txt Score: 0.0012678588235586576
+File: Text-402.txt Score: 0.0010492736583625076
+File: Text-53.txt Score: 0.0009077328752907147
+------------------------------------------------------------------------------------------------------------
+inexact_query_champion searched in 0.008007049560546875 seconds
+Searching for ' americans europe '...
+Total docs searched: 44
+Taking top 5 results
+File: Text-343.txt Score: 7.096650891025732e-06
+File: Text-329.txt Score: 0.0
+File: Text-56.txt Score: 0.0
+File: Text-204.txt Score: 0.0
+File: Text-315.txt Score: 0.0
+------------------------------------------------------------------------------------------------------------
+inexact_query_index_elimination searched in 0.0 seconds
+exact_query searched in 0.06355428695678711 seconds
+Searching for ' europe '...
+Total docs searched: 423
+Taking top 5 results
+File: Text-174.txt Score: 0.004033061700955305
+File: Text-202.txt Score: 0.0015088283625321788
+File: Text-402.txt Score: 0.0010492736583625076
+File: Text-48.txt Score: 0.000994176111911086
+File: Text-53.txt Score: 0.0009077328752907147
+------------------------------------------------------------------------------------------------------------
+inexact_query_cluster_pruning searched in 0.013512134552001953 seconds
+Searching for ' americans europe '...
+Total docs searched: 4
+File: Text-402.txt Score: 0.0010492736583625076
+File: Text-54.txt Score: 0.0007702279157424648
+File: Text-47.txt Score: 0.0002597764987793163
+File: Text-211.txt Score: 5.002428759610919e-05
+============================================================================================================
